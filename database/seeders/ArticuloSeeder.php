@@ -11,22 +11,24 @@
             $user = User::first();
 
             if ($user) {
-                Articulo::create([
+                Articulo::firstOrCreate([
                     'titulo' => 'Artículo de ejemplo',
+                ], [
                     'contenido' => 'Este es un contenido de ejemplo para el artículo.',
                     'user_id' => $user->id,
                     'fecha_publicacion' => now()->subDays(5),
                     'estado' => 'Publicado',
-                    'secciones' => ['Portada', 'Interior']
+                    'secciones' => ['Portada', 'Interior'],
                 ]);
 
-                Articulo::create([
+                Articulo::firstOrCreate([
                     'titulo' => 'Otro artículo',
+                ], [
                     'contenido' => 'Contenido del segundo artículo.',
                     'user_id' => $user->id,
                     'fecha_publicacion' => now()->addDays(3),
                     'estado' => 'Borrador',
-                    'secciones' => ['Foros']
+                    'secciones' => ['Foros'],
                 ]);
             }
         }
